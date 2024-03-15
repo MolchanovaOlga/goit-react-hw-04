@@ -1,8 +1,10 @@
-const ImageCard = () => {
+import css from './ImageCard.module.css';
+
+const ImageCard = ({ small, altDescription }) => {
   return (
-    <div>
-      <img src="" alt="" />
-    </div>
+    <>
+      <img className={css.image} src={small} alt={altDescription} />
+    </>
   );
 };
 
