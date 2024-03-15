@@ -4,8 +4,9 @@
   width: 240px;
 }
 
-.button:hover,
-.button:focus {
+.button:hover {
   color: #242424;
   border: 1px solid rgb(1, 1, 66);
+  transition: color 250ms linear;
+  transition: background-color 250ms linear;
 }

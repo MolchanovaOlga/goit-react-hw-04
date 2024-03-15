@@ -3,18 +3,12 @@ import css from './ImageGallery.module.css';
 import ImageCard from '../ImageCard/ImageCard';
 
 const ImageGallery = ({ items }) => {
-  // const {
-  //   urls: { regular },
-  //   description,
-  //   likes,
-  //   user: { name, location },
-  // } = items;
   return (
     <ul className={css.list}>
-      {items.map(({ id, urls: { small }, alt_description }) => {
+      {items.map(item => {
         return (
-          <li className={css.item} key={id}>
-            <ImageCard small={small} altDescription={alt_description} />
+          <li className={css.item} key={item.id}>
+            <ImageCard items={item} />
           </li>
         );
       })}

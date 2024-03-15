@@ -9,11 +9,12 @@ const objUrlParams = {
   query: '',
 };
 
-const requestByKeyWord = async keyWord => {
+const requestByKeyWord = async (keyWord, pages) => {
   objUrlParams.query = `${keyWord}`;
+
   axios.defaults.baseURL = 'https://api.unsplash.com/';
   const response = await axios.get('search/photos/', {
-    params: objUrlParams,
+    params: { ...objUrlParams, page: pages },
   });
 
   objUrlParams.total = response.data.total;

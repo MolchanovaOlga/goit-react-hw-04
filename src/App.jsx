@@ -1,23 +1,24 @@
 import { useState } from 'react';
-import toast from 'react-hot-toast';
 
 import './App.css';
 
 import SearchBar from './components/SearchBar/SearchBar';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import { requestByKeyWord, objUrlParams } from './components/services/api';
+import message from './components/services/message';
 import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 
 function App() {
   const [gallery, setGallery] = useState([]);
+  const [pages, setPages] = useState(1);
   const [error, setError] = useState(false);
 
   const handleSearch = async keyWord => {
     try {
       setGallery([]);
       setError(false);
-      const data = await requestByKeyWord(keyWord);
+      const data = await requestByKeyWord(keyWord, pages);
 
       if (data.total === 0) {
         message();
@@ -25,7 +26,6 @@ function App() {
       }
 
       setGallery(data.results);
-      console.log(data);
     } catch (error) {
       setError(true);
     }
@@ -34,31 +34,25 @@ function App() {
     // }
   };
 
-  const handleClick = () => {};
+  const handleClick = async () => {
+    setPages(prev => prev + 1);
+    const data = await requestByKeyWord(objUrlParams.query, pages + 1);
+    setGallery(prev => [...prev, ...data.results]);
+  };
+
+  const handleChange = () => {
+    setPages(1);
+  };
 
   return (
     <>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} handleChange={handleChange} />
       {error && <ErrorMessage />}
       {gallery.length > 0 && <ImageGallery items={gallery} />}
-      {objUrlParams.total > objUrlParams.per_page && (
-        <LoadMoreBtn handleClick={handleClick} />
-      )}
+      {objUrlParams.total > objUrlParams.per_page &&
+        pages < objUrlParams.total / objUrlParams.per_page &&
+        gallery.length > 0 && <LoadMoreBtn handleClick={handleClick} />}
     </>
-  );
-}
-
-function message() {
-  toast(
-    'Sorry, there are no images matching your search query. Please try again!',
-    {
-      duration: 5000,
-      position: 'top-right',
-      style: {
-        background: '#ffa500',
-        color: '#fff',
-      },
-    }
   );
 }
 
