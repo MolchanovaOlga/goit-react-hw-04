@@ -19,7 +19,6 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalImg, setModalImg] = useState({});
-  console.log(gallery);
 
   const handleSearch = async keyWord => {
     try {
