@@ -8,21 +8,21 @@
 
 @media screen and (max-width: 767px) {
   .list {
-    margin: 96px 8px 48px;
+    margin: 48px 8px;
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1249px) {
   .list {
-    margin: 96px 24px 48px;
+    margin: 48px 24px;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (min-width: 1250px) {
   .list {
-    margin: 96px 24px 48px;
+    margin: 48px 24px;
     grid-template-columns: repeat(3, 1fr);
   }
 }

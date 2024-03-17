@@ -5,7 +5,7 @@ const objUrlParams = {
   client_id: idAPI,
   total: 0,
   page: 1,
-  per_page: 6,
+  per_page: 20,
   query: '',
 };
 

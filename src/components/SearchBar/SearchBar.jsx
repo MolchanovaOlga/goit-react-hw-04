@@ -25,16 +25,18 @@ const SearchBar = ({ onSearch, handleChange }) => {
   return (
     <header className={css.header}>
       <form className={css.form} onSubmit={handleSubmit}>
-        <LuSearch className={css.icon} />
-        <input
-          className={css.input}
-          onChange={handleChange}
-          type="text"
-          name="searchInput"
-          autocomplete="off"
-          autofocus
-          placeholder="Search images and photos"
-        />
+        <label className={css.label}>
+          <LuSearch className={css.icon} />
+          <input
+            className={css.input}
+            onChange={handleChange}
+            type="text"
+            name="searchInput"
+            autocomplete="off"
+            autofocus
+            placeholder="Search images and photos"
+          />
+        </label>
         <button className={css.button} type="submit">
           Search
         </button>
