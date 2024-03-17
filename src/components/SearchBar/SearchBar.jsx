@@ -3,7 +3,7 @@ import { LuSearch } from 'react-icons/lu';
 
 import css from './SearchBar.module.css';
 
-const SearchBar = ({ onSearch, handleChange }) => {
+const SearchBar = ({ onSearch }) => {
   const handleSubmit = evt => {
     evt.preventDefault();
     const form = evt.target;
@@ -29,11 +29,10 @@ const SearchBar = ({ onSearch, handleChange }) => {
           <LuSearch className={css.icon} />
           <input
             className={css.input}
-            onChange={handleChange}
             type="text"
             name="searchInput"
-            autocomplete="off"
-            autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
           />
         </label>
